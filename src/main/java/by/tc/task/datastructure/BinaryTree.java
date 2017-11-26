@@ -4,10 +4,57 @@ public class BinaryTree {
 
 	public BinaryTree() {
 	}
-	Node root;
+	private Node root;
+	private static void inOrderBypass(Node focusNode) {
 
-	public void addNode(int key, String name) {
-		Node newNode = new Node(key, name);
+		if (focusNode != null) {
+			inOrderBypass(focusNode.left);
+			inOrderBypass(focusNode.right);
+		}
+
+	}
+	private static void preOrderBypass(Node focusNode){
+        ArrayList list = new ArrayList (); 
+        while (focusNode!=null || list.size()!=0){
+            if (list.size()!=0){
+            	int last = list.size()-1;
+            	focusNode =(Node) list.remove(last);
+            }
+            while (focusNode!=null){
+                if (focusNode.right!=null) list.add(focusNode.right);
+                focusNode=focusNode.left;
+            }
+        }
+	}
+
+	private static void contLevelOrder(Node top){
+    	LinkedList list=new LinkedList();
+        do{
+            if (top.left!=null){
+            	list.addLast(top.left);
+            }
+            if (top.right!=null){
+            	list.addLast(top.right);
+            }
+            if (list.size()!=0){
+            	top=(Node) list.removeFirst();
+            }
+        }while (list.size()!=0);
+	}
+    public void contLevelOrder(){
+    	Node top = this.root;
+    	contLevelOrder(top);
+    }
+    public void preOrderBypass(){
+    	Node top = this.root;
+    	preOrderBypass(top);
+    }
+    public void inOrderBypass(){
+    	Node top = this.root;
+    	inOrderBypass(top);
+    }
+	public void addNode(int key, Object element) {
+		Node newNode = new Node(key, element);
 		if (root == null) {
 			root = newNode;
 		} else {
@@ -39,44 +86,8 @@ public class BinaryTree {
 		}
 
 	}
-	public void inOrderBypass(Node focusNode) {
-
-		if (focusNode != null) {
-			inOrderBypass(focusNode.left);
-			inOrderBypass(focusNode.right);
-		}
-
-	}
-    void preOrderBypass(Node focusNode){
-        ArrayList list = new ArrayList (); 
-        while (focusNode!=null || list.size()!=0){
-            if (list.size()!=0){
-            	int last = list.size()-1;
-            	focusNode =(Node) list.remove(last);
-            }
-            while (focusNode!=null){
-                if (focusNode.right!=null) list.add(focusNode.right);
-                focusNode=focusNode.left;
-            }
-        }
-   }
-
-    static void contLevelOrder(Node top){
-    	LinkedList list=new LinkedList();
-        do{
-            if (top.left!=null){
-            	list.addLast(top.left);
-            }
-            if (top.right!=null){
-            	list.addLast(top.right);
-            }
-            if (list.size()!=0){
-            	top=(Node) list.removeFirst();
-            }
-        }while (list.size()!=0);
-    }
     
-	public Node findNode(int key) {
+	public Object findNode(int key) {
 		
 		Node focusNode = root;
 		
@@ -89,7 +100,7 @@ public class BinaryTree {
 			if (focusNode == null)
 				return null;
 		}
-		return focusNode;
+		return focusNode.element;
 	}
 
 }
@@ -97,20 +108,20 @@ public class BinaryTree {
 class Node {
 
 	int key;
-	String name;
+	Object element;
 
 	Node left;
 	Node right;
 
-	Node(int key, String name) {
+	Node(int key, Object element) {
 
 		this.key = key;
-		this.name = name;
+		this.element = element;
 
 	}
 
 	public String toString() {
-		return name + " has the key " + key;
+		return element + " has the key " + key;
 	}
 
 }
