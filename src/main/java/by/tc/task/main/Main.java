@@ -26,6 +26,7 @@ public class Main {
 		list2.addLast(2);
 		list2.addLast("c");
 		list2.addLast("d");
+		list2.remove(2);
 		System.out.println(list2.removeLast());
 		System.out.println(list2.getLast());
 		for (int i = 0;i<list2.size();i++){
@@ -35,6 +36,18 @@ public class Main {
 		Iterator iterator = list.iterator();
 		while(iterator.hasNext()){
 			System.out.print(iterator.next()+" ");
+		}
+		iterator = list.iterator();
+		System.out.println();
+		while(iterator.hasNext()){
+			Object obj = iterator.next();
+			if(obj.equals("a")){
+				iterator.remove();
+			}
+		}
+		list.remove(1);
+		for (int i = 0;i<list.size();i++){
+			System.out.print(list.get(i)+ " ");
 		}
 		System.out.println();
 		Iterator iterator2 = list2.iterator();
@@ -46,7 +59,16 @@ public class Main {
 		tree.addNode(1, "x");
 		tree.addNode(4, "r");
 		tree.addNode(2, "u");
+		tree.addNode(3, "r");
+		tree.addNode(6, "u");
+		tree.addNode(5, "r");
+		tree.addNode(0, "u");
 		System.out.println(tree.findNode(4));
+		tree.inOrderBypass();
+		System.out.println();
+		tree.contLevelOrder();
+		System.out.println();
+		tree.preOrderBypass();
 	}
 
 }

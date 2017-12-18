@@ -8,6 +8,7 @@ public class BinaryTree {
 	private static void inOrderBypass(Node focusNode) {
 
 		if (focusNode != null) {
+			System.out.println(focusNode.key);
 			inOrderBypass(focusNode.left);
 			inOrderBypass(focusNode.right);
 		}
@@ -17,29 +18,24 @@ public class BinaryTree {
         ArrayList list = new ArrayList (); 
         while (focusNode!=null || list.size()!=0){
             if (list.size()!=0){
-            	int last = list.size()-1;
-            	focusNode =(Node) list.remove(last);
+            	int first = 0;
+            	focusNode =(Node) list.remove(first);
             }
             while (focusNode!=null){
-                if (focusNode.right!=null) list.add(focusNode.right);
+            	System.out.println(focusNode.key);
+                if (focusNode.right!=null) {
+                	list.add(focusNode.right);
+                }
                 focusNode=focusNode.left;
             }
         }
 	}
-
-	private static void contLevelOrder(Node top){
-    	LinkedList list=new LinkedList();
-        do{
-            if (top.left!=null){
-            	list.addLast(top.left);
-            }
-            if (top.right!=null){
-            	list.addLast(top.right);
-            }
-            if (list.size()!=0){
-            	top=(Node) list.removeFirst();
-            }
-        }while (list.size()!=0);
+	private static void contLevelOrder(Node focusNode){
+		if (focusNode != null) {
+			System.out.println(focusNode.key);
+			inOrderBypass(focusNode.right);
+			inOrderBypass(focusNode.left);
+		}
 	}
     public void contLevelOrder(){
     	Node top = this.root;
