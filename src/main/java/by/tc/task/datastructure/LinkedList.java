@@ -178,10 +178,10 @@ public class LinkedList {
 			}
 			else{
 				if(note.note==null){
-					size = 0;
+					//size = 0;
 					element = null; 
 				}
-				decreaseSize();
+				//decreaseSize();
 				LinkedList newNote = new LinkedList();
 				newNote = note;
 				newNote.size = size;

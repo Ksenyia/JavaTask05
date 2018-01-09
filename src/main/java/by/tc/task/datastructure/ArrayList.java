@@ -1,10 +1,16 @@
 package by.tc.task.datastructure;
 
+import org.apache.log4j.Logger;
+
+import by.tc.task.main.Main;
+
 public class ArrayList {
 
 	private  Object array[];
 	private int size;
 	private int capasity;
+	
+	public static final Logger log = Logger.getLogger(Main.class);
 	
 	public ArrayList() {
 		size = 0;
@@ -95,7 +101,7 @@ public class ArrayList {
 	        }
 	 
 	        public boolean hasNext() {
-	            return index < array.length;
+	            return index < size;
 	        }
 	 
 	        public Object next() {

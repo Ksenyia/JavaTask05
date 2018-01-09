@@ -1,5 +1,7 @@
 package by.tc.task.main;
 
+import org.apache.log4j.Logger;
+
 import by.tc.task.datastructure.ArrayList;
 import by.tc.task.datastructure.BinaryTree;
 import by.tc.task.datastructure.Iterator;
@@ -9,7 +11,7 @@ public class Main {
 
 	public Main() {
 	}
-
+	public static final Logger log = Logger.getLogger(Main.class);
 	public static void main(String[] args) {
 		ArrayList list = new ArrayList();
 		LinkedList list2 = new LinkedList();
@@ -26,35 +28,24 @@ public class Main {
 		list2.addLast(2);
 		list2.addLast("c");
 		list2.addLast("d");
-		list2.remove(2);
-		System.out.println(list2.removeLast());
-		System.out.println(list2.getLast());
-		for (int i = 0;i<list2.size();i++){
-			System.out.print(list2.get(i)+ " ");
-		}
-		System.out.println();
 		Iterator iterator = list.iterator();
+		String message = "ArrayList iterator test";
+		log.info(message);
+		String test = null;
 		while(iterator.hasNext()){
-			System.out.print(iterator.next()+" ");
+			test+=iterator.next() + " ";
 		}
-		iterator = list.iterator();
-		System.out.println();
-		while(iterator.hasNext()){
-			Object obj = iterator.next();
-			if(obj.equals("a")){
-				iterator.remove();
-			}
-		}
-		list.remove(1);
-		for (int i = 0;i<list.size();i++){
-			System.out.print(list.get(i)+ " ");
-		}
-		System.out.println();
+		log.info(test);
+		message = "ArrayList iterator test end";
+		log.info(message);
 		Iterator iterator2 = list2.iterator();
+		message = "LinkedList iterator test";
+		log.info(message);
+		test = null;
 		while(iterator2.hasNext()){
-			System.out.print(iterator2.next()+" ");
+			test+=iterator2.next() + " ";
 		}
-		System.out.println();
+		log.info(test);
 		BinaryTree tree = new BinaryTree();
 		tree.addNode(1, "x");
 		tree.addNode(4, "r");
@@ -63,12 +54,12 @@ public class Main {
 		tree.addNode(6, "u");
 		tree.addNode(5, "r");
 		tree.addNode(0, "u");
-		System.out.println(tree.findNode(4));
+		
 		tree.inOrderBypass();
-		System.out.println();
+		
+		tree.inOrderBypass();
+		
 		tree.contLevelOrder();
-		System.out.println();
 		tree.preOrderBypass();
 	}
-
-}
+}   
